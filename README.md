@@ -13,7 +13,8 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 - **Model-agnostic** utilities for evaluation, batch metrics, confusion matrices, comparison, and explainability
 - **Fully modular** XAI + evaluation pipeline supports any model, batch, or layer combination
 - **Modular** image processing stack supports image/mask alignment, augmentation, and pre-inference transformations
-- **Plug-and-play** functions for metric reporting, variant comparison, and visual overlays 
+- **Plug-and-play** functions for metric reporting, variant comparison, and visual overlays
+- **LLM Integration** for accurate and efficient batch metric retrieval using lightweight tinyllama 1.1B.
 
 ---
 
