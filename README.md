@@ -109,6 +109,23 @@ Three model variants with same architecture but different loss functions for spe
 
 ---
 
+## LLM Integration for Batch Metric Retrieval
+
+Accurate and efficient batch metric retrieval using JSON structured data and Tinyllama 1.1B. Retrieved metrics match calculated and saved metrics for each batch.
+
+<details>
+<summary>View LLM Integration for Batch Metric Retrieval</summary>
+
+![Model 1 - LLM Integration for Batch Metric Retrieval](output/batch_metric_data.png)
+*Model 1 batch metric data for comparison.*
+
+![Model 1 - LLM Integration for Batch Metric Retrieval](output/gb_llm_retrieval_model_1.png)
+*Batch metric retrieval for Model 1.*
+
+</details>
+
+---
+
 ## Visual - Superpixel Confidence Mapping for XAI
 
 Pixel-level confidence for model's segmentation decisions. 200 segments applied for visualization.
@@ -116,7 +133,7 @@ Pixel-level confidence for model's segmentation decisions. 200 segments applied 
 <details>
 <summary>View Pixel Confidence Mapping</summary>
 
-![Model 1 - Confidence Map Output](output/sp_model_1.png)
+![Model 1 - Confidence Map Output](output/sp_model_1_78.png)
 *Heatmap displaying class confidence for each pixel, grouped by like pixels, for transparency.*
 
 </details>
