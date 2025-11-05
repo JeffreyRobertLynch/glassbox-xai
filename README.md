@@ -19,11 +19,23 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 ## Metrics 
 
-| Model              | Dice     | IoU      | Precision | Recall   | Pixel Accuracy | Global F1 Score |
+| Model              | Dice     | IoU      | Precision | Recall   | F1 Score | Pixel Accuracy |
 |-------------------|----------|----------|-----------|----------|----------------|----------|
-| **Dice-Optimized**   | **0.8751** | **0.8000** | **0.9028**  | 0.8291   | **0.9272**      | 0.8644   |
-| **Balance-Optimized**| 0.8734   | 0.7925   | 0.8787    | 0.8564   | 0.9267         | **0.8674** |
-| **Recall-Optimized** | 0.8573   | 0.7669   | 0.8280    | **0.8936** | 0.9182         | 0.8595   |
+| **Precision-Optimized**   | **0.8751** | **0.8000** | **0.8870**  | 0.9052   | **0.8751**     | **0.9272**   |
+| **Balance-Optimized**| 0.8735   | 0.7925   | 0.8624    | 0.9228   | 0.8735         | 0.9267 |
+| **Recall-Optimized** | 0.8573   | 0.7669   | 0.8149    | **0.9444** | 0.8573         | 0.9182   |
+
+<details>
+<summary>View Test Set Evaluation Metrics</summary>
+
+![Test Set Evaluation - Model 1](output/eval_model_1.png)
+
+![Test Set Evaluation - Model 2](output/eval_model_2.png)
+
+![Test Set Evaluation - Model 3](output/eval_model_3.png)
+*Test Set Evaluation comparison across variant models.*
+
+</details>
 
 ---
 
@@ -33,66 +45,148 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 | Model                     | False Positives (%) | False Negatives (%) |
 |---------------------------|---------------------|----------------------|
-| **Dice-Optimized**            | ~2.5%               | ~4.8%                |
+| **Precision-Optimized**            | ~2.5%               | ~4.8%                |
 | **Balance-Optimized**         | ~3.3%               | ~4.0%                |
 | **Recall-Optimized**          | ~5.2%               | ~3.0%                |
 
+<details>
+<summary>View Confusion Matrices</summary>
+
+![Confusion Matrix - Model 1](output/cm_model_1.png)
+
+![Confusion Matrix - Model 2](output/cm_model_2.png)
+
+![Confusion Matrix - Model 3](output/cm_model_3.png)
+*Confusion Matrix comparison across variant models.*
+
+</details>
+
 ---
 
-## Model Comparison
+## Visual - Basic Mask Output vs Ground Truth Mask
 
-Trained and evaluated three model variants with same architecture but different loss functions. Outputs compared over shared test batch.
+**Note**: A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set. All functions are fully modular and can be passed any model, batch, layer, or XAI technique. All outputs generated at time of inference.
 
-**Note**: A single batch featuring mean performance is displayed across all visuals for transparency. Matches closely to Dice-Optimized (Model 1) average performance on full 1000 image test set. Best case and worst case included in deep dive. 
+Basic mask output for batch 78 using Model 1 (Precision-Optimized) to illustrate how overlays are constructed, step by step, from model output.
+
+<details>
+<summary>Basic Mask Output</summary>
+
+![Multi-Model - Variant Comparison Visual](output/mask_model_1.png)
+*Side-by-side comparison of mask output vs. ground truth masks.*
+
+</details>
+
+---
+
+## Visual - Segmentation Overlay vs Ground Truth Overlay
+
+Segmentation Overlay for Model 1 (Precision-Optimized). 
+
+<details>
+<summary>Basic Mask Output</summary>
+
+![Multi-Model - Variant Comparison Visual](output/overlay_model_1.png)
+*Side-by-side comparison of model-produced segmentation overlay vs. ground truth overlay.*
+
+</details>
+
+---
+
+## Visual - Segmentation Overlay Comparison of Variant Models vs Ground Truth Overlay with Batch Metrics
+
+Three model variants with same architecture but different loss functions for specialized error profiles. Outputs compared over shared test batch vs ground truth overlays.
 
 <details>
 <summary>View Comparative Model Outputs</summary>
 
-![Multi-Model - Variant Comparison Visual](output/multi_model_batch_a_1.png)
+![Multi-Model - Variant Comparison Metrics](output/batch_metrics.png)
+
+![Multi-Model - Variant Comparison Visual](output/overlay_multi_model.png)
 *Side-by-side comparison of segmentation output vs. ground truth across three model variants.*
 
 </details>
 
 ---
 
-## Explainability (XAI)
+## Visual - Superpixel Confidence Mapping for XAI
 
-Integrated multiple interpretability techniques to support review, regulatory compliance, and clinical workflows. Outputs generated at inference time.
-
-- Layerwise Grad-CAM (decoder layers shown)  
-- Integrated Gradients  
-- Saliency Map
-- Pixel Confidence Overlays  
+Pixel-level confidence for model's segmentation decisions. 200 segments applied for visualization.
 
 <details>
-<summary>View Grad-CAM Output</summary>
+<summary>View Pixel Confidence Mapping</summary>
 
-![Model 1 - Grad-CAM Decoder Layer Output](output/layer_dec_model_1_batch_a_1.png)
-*Decoder-layer activation via Grad-CAM. Full end-to-end layerwise mapping available in deep dive.*
+![Model 1 - Confidence Map Output](output/sp_model_1.png)
+*Heatmap displaying class confidence for each pixel, grouped by like pixels, for transparency.*
 
 </details>
 
-<details>
-<summary>View Integrated Gradients</summary>
+---
 
-![Model 1 - Integrated Gradients Output](output/int_grad_model_1_batch_a_1.png) 
-*Map using Integrated Gradients.*
+## Visual - Layer-wise Grad-CAM for Decoder Layers for XAI
+
+Visualization of decoder layers only. Any layer or grouping can be visualized with this technique, but encoder, bottleneck, and output layer not shown here. Optional smoothing applied for visualization.
+
+<details>
+<summary>View Layer-wise Grad-CAM for Decoder Layers</summary>
+
+![Model 1 - Layer-wise Grad-CAM for Decoder Layers](output/lwgc_A_dec_model_1.png)
+*Heatmap of contribution to output across layers for transparency.*
 
 </details>
 
-<details>
-<summary>View Saliency Map (Logits)</summary>
+---
 
-![Model 1 - Saliency Map Logits Output](output/sal_map_model_1_batch_a_1_raw.png) 
-*Saliency based on raw logits.*
+## Visual - Saliency Mapping for XAI
+
+Basic saliency mapping shows model sensitivity without regard to attribution. Scaling factor of 10 applied for visualization.
+
+<details>
+<summary>View Basic Saliency Mapping</summary>
+
+![Model 1 - Basic Saliency Mapping](output/sal_model_1.png)
+*Heatmap of sensitivity for transparency.*
 
 </details>
 
-<details>
-<summary>View Pixel Confidence Overlay</summary>
+---
 
-![Model 1 - Confidence Map Output](output/conf_map_model_1_batch_a_1.png)
-*Overlay displaying class confidence for each pixel, grouped by like pixels.*
+## Visual - Saliency Mapping with Smooth Grad for XAI
+
+Saliency mapping averaging 50 samples for more robust visualization. Scaling factor of 10 applied for visualization. 
+
+<details>
+<summary>View Saliency Mapping with Smooth Grad</summary>
+
+![Model 1 - Saliency Mapping with Smooth Grad](output/sal_sg_model_1.png)
+*Heatmap of sensitivity, with smooth grad applied, for transparency.*
+
+</details>
+
+---
+
+## Visual - Saliency Mapping with Guided Backpropogation for XAI
+
+Saliency mapping with guided backpropogation. Scaling factor of 10 applied for visualization. 
+<details>
+<summary>View Saliency Mapping with Guided Backpropogation</summary>
+
+![Model 1 - Saliency Mapping with Guided Backpropogation](output/sal_bp_model_1.png)
+*Heatmap of saliency, with guided backpropogation, for transparency.*
+
+</details>
+
+---
+
+## Visual - Integrated Gradient Mapping for XAI
+
+Integrated gradient mapping for attribution. Parameters applied for visualization: scaling factor of 1, 50 steps, tf.zeros_like baseline. All parameters are modular.
+
+<details>
+<summary>View Integrated Gradient Mapping</summary>
+
+![Model 1 - Integrated Gradient Mapping](output/ig_out_model_1.png)
+*Heatmap of gradient attribution for transparency.*
 
 </details>
 
