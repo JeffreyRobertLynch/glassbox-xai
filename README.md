@@ -17,6 +17,26 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 ---
 
+## Visuals: Auditability & HITL Design
+
+- Full Layerwise Grad-CAM, Integrated Gradients, Saliency, Pixel Confidence
+- Variant model comparative segmentation
+- Outputs and heatmap overlays designed for **review, regulatory compliance, and clinical workflow integration**  
+- Transparency layers directly support **human-in-the-loop (HITL)** processes
+- Full training, segmentation, and XAI pipeline runs on **modest hardware** with no external dependencies (cloud, expanded data, pretrained models)
+
+---
+
+## Generalizability
+
+System structure, transparency methods, and audit frameworks generalize to:
+
+- Healthcare diagnostics  
+- Agriculture 
+- Quality control 
+
+---
+
 ## Metrics 
 
 | Model              | Dice     | IoU      | Precision | Recall   | F1 Score | Pixel Accuracy |
@@ -63,7 +83,7 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 ---
 
-## Visual - Basic Mask Output vs Ground Truth Mask
+## Basic Mask Output vs Ground Truth Mask
 
 **Note**: A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set. All functions are fully modular and can be passed any model, batch, layer, or XAI technique. All outputs generated at time of inference.
 
@@ -79,7 +99,7 @@ Basic mask output for batch 78 using Model 1 (Precision-Optimized) to illustrate
 
 ---
 
-## Visual - Segmentation Overlay vs Ground Truth Overlay
+## Segmentation Overlay vs Ground Truth Overlay
 
 Segmentation Overlay for Model 1 (Precision-Optimized). 
 
@@ -93,7 +113,7 @@ Segmentation Overlay for Model 1 (Precision-Optimized).
 
 ---
 
-## Visual - Segmentation Overlay Comparison of Variant Models vs Ground Truth Overlay with Batch Metrics
+## Segmentation Overlay Comparison of Variant Models vs Ground Truth Overlay with Batch Metrics
 
 Three model variants with same architecture but different loss functions for specialized error profiles. Outputs compared over shared test batch vs ground truth overlays.
 
@@ -116,17 +136,17 @@ Accurate and efficient batch metric retrieval using JSON structured data and Tin
 <details>
 <summary>View LLM Integration for Batch Metric Retrieval</summary>
 
+### Model 1 Batch Metric Data for Comparison
 ![Model 1 - LLM Integration for Batch Metric Retrieval](output/batch_metric_data.png)
-*Model 1 batch metric data for comparison.*
 
+### Model 1 Batch Metric LLM Retrieval
 ![Model 1 - LLM Integration for Batch Metric Retrieval](output/gb_llm_retrieval_model_1.png)
-*Batch metric retrieval for Model 1.*
 
 </details>
 
 ---
 
-## Visual - Superpixel Confidence Mapping for XAI
+## Superpixel Confidence Mapping for XAI
 
 Pixel-level confidence for model's segmentation decisions. 200 segments applied for visualization.
 
@@ -140,7 +160,7 @@ Pixel-level confidence for model's segmentation decisions. 200 segments applied 
 
 ---
 
-## Visual - Layer-wise Grad-CAM for Decoder Layers for XAI
+## Layer-wise Grad-CAM for Decoder Layers for XAI
 
 Visualization of decoder layers only. Any layer or grouping can be visualized with this technique, but encoder, bottleneck, and output layer not shown here. Optional smoothing applied for visualization.
 
@@ -154,7 +174,7 @@ Visualization of decoder layers only. Any layer or grouping can be visualized wi
 
 ---
 
-## Visual - Saliency Mapping for XAI
+## Saliency Mapping for XAI
 
 Basic saliency mapping shows model sensitivity without regard to attribution. Scaling factor of 10 applied for visualization.
 
@@ -168,7 +188,7 @@ Basic saliency mapping shows model sensitivity without regard to attribution. Sc
 
 ---
 
-## Visual - Saliency Mapping with Smooth Grad for XAI
+## Saliency Mapping with Smooth Grad for XAI
 
 Saliency mapping averaging 50 samples for more robust visualization. Scaling factor of 10 applied for visualization. 
 
@@ -182,20 +202,20 @@ Saliency mapping averaging 50 samples for more robust visualization. Scaling fac
 
 ---
 
-## Visual - Saliency Mapping with Guided Backpropogation for XAI
+## Saliency Mapping with Guided Backpropogation for XAI
 
 Saliency mapping with guided backpropogation. Scaling factor of 10 applied for visualization. 
 <details>
 <summary>View Saliency Mapping with Guided Backpropogation</summary>
 
-![Model 1 - Saliency Mapping with Guided Backpropogation](output/sal_bp_model_1.png)
+![Model 1 - Saliency Mapping with Guided Backpropogation](output/sal_gb_model_1.png)
 *Heatmap of saliency, with guided backpropogation, for transparency.*
 
 </details>
 
 ---
 
-## Visual - Integrated Gradient Mapping for XAI
+## Integrated Gradient Mapping for XAI
 
 Integrated gradient mapping for attribution. Parameters applied for visualization: scaling factor of 1, 50 steps, tf.zeros_like baseline. All parameters are modular.
 
@@ -206,26 +226,6 @@ Integrated gradient mapping for attribution. Parameters applied for visualizatio
 *Heatmap of gradient attribution for transparency.*
 
 </details>
-
----
-
-## Auditability & HITL Design
-
-- Full Layerwise Grad-CAM, Integrated Gradients, Saliency, Pixel Confidence
-- Variant model comparative segmentation
-- Outputs and heatmap overlays designed for **review, regulatory compliance, and clinical workflow integration**  
-- Transparency layers directly support **human-in-the-loop (HITL)** processes
-- Full training, segmentation, and XAI pipeline runs on **modest hardware** with no external dependencies (cloud, expanded data, pretrained models)
-
----
-
-## Generalizability
-
-System structure, transparency methods, and audit frameworks generalize to:
-
-- Healthcare diagnostics  
-- Agriculture 
-- Quality control 
 
 ---
 
