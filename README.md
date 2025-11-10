@@ -4,7 +4,7 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 ---
 
-## Model Architecture, Training, and System Information
+## System Overview
 
 - **Custom architecture**: U-Net with attention bottleneck  
 - **Dataset**: ISIC 2018 – Task 1: Lesion Segmentation  
@@ -12,19 +12,19 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 - **Training Pipeline** includes robust augmentation, fine tuning, and callbacks for early stopping, iterative checkpoints, and LR scheduling 
 - **Model-agnostic** utilities for evaluation, batch metrics, confusion matrices, comparison, and explainability
 - **Fully modular** XAI + evaluation pipeline supports any model, batch, or layer combination
-- **Modular** image processing stack supports image/mask alignment, augmentation, and pre-inference transformations
 - **Plug-and-play** functions for metric reporting, variant comparison, and visual overlays
+- **Modular** image processing stack supports image/mask alignment, augmentation, and pre-inference transformations
 - **LLM Integration** for accurate and efficient batch metric retrieval using lightweight tinyllama 1.1B.
 
 ---
 
-## Visuals: Auditability & HITL Design
+## Transparency, Auditability & HITL Design
 
-- Full Layerwise Grad-CAM, Integrated Gradients, Saliency, Pixel Confidence
+- Full Layerwise Grad-CAM, Integrated Gradient Mapping, Saliency Mapping, Superpixel Confidence Mapping
 - Variant model comparative segmentation
 - Outputs and heatmap overlays designed for **review, regulatory compliance, and clinical workflow integration**  
 - Transparency layers directly support **human-in-the-loop (HITL)** processes
-- Full training, segmentation, and XAI pipeline runs on **modest hardware** with no external dependencies (cloud, expanded data, pretrained models)
+- Full training, segmentation, XAI pipeline, and LLM integration runs on **modest hardware** with no external dependencies (cloud, expanded data, pretrained models)
 
 ---
 
@@ -32,9 +32,11 @@ A solo-built, end-to-end system for interpretable, infrastructure-light medical 
 
 System structure, transparency methods, and audit frameworks generalize to:
 
-- Healthcare diagnostics  
-- Agriculture 
-- Quality control 
+- Additional Medical Imaging Tasks
+- Healthcare Diagnostics  
+- Agriculture Automation 
+- Quality Control Processes
+- Satellite Imagery Segmentation
 
 ---
 
@@ -203,14 +205,14 @@ Saliency mapping averaging 50 samples for more robust visualization. Scaling fac
 
 ---
 
-## Saliency Mapping with Guided Backpropogation for XAI
+## Saliency Mapping with Guided Backpropagation for XAI
 
-Saliency mapping with guided backpropogation. Scaling factor of 10 applied for visualization. 
+Saliency mapping with guided backpropagation. Scaling factor of 10 applied for visualization. 
 <details>
-<summary>View Saliency Mapping with Guided Backpropogation</summary>
+<summary>View Saliency Mapping with Guided Backprapogation</summary>
 
-![Model 1 - Saliency Mapping with Guided Backpropogation](output/sal_gb_model_1.png)
-*Heatmap of saliency, with guided backpropogation, for transparency.*
+![Model 1 - Saliency Mapping with Guided Backpropagation](output/sal_gb_model_1.png)
+*Heatmap of saliency, with guided backpropagation, for transparency.*
 
 </details>
 
