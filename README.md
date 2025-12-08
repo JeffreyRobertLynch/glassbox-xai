@@ -2,7 +2,7 @@
 
 **GlassBox** is a deep learning computer vision system designed to support medical professionals by providing automated medical image segmentation. It achieves high performance (Dice: O.875, IoU 0.8) on the **ISIC 2018 - Task 1: Binary Segmentation** skin lesion dataset.
 
-Beyond performance, the **explainable AI (XAI)** techniques included reveal model reasoning for enhanced **transparency**, **reliability**, and **auditability**. XAI techniques featured include **saliency heatmap overlays**, **pixel confidence overlays**, **integrated gradient overlays**, and **end-to-end layer-wise Grad-CAM**. Inference is constructed with **transparency**, enabling effective **human-in-the-loop (HITL)** workflows and supporting **clinical review**.
+Beyond performance, **explainable AI (XAI)** techniques reveal model reasoning for enhanced **transparency**, **reliability**, and **auditability**. XAI techniques featured include **saliency heatmap overlays**, **pixel confidence overlays**, **integrated gradient overlays**, and **end-to-end layer-wise Grad-CAM**. Inference is constructed with **transparency**, enabling effective **human-in-the-loop (HITL)** workflows and supporting **clinical review**.
 
 Model-agnostic pipelines are structured for **model retraining** and **CI/CD**, with all functionality **fully interoperable** across all model variants. GlassBox is a **scalable foundation for responsible AI deployment** in regulated, high-stakes environments. **Model architecture**, **pipelines** (preprocessing, augmentation, training, evaluation), and **explainability** are designed for reusability across diverse segmentation tasks. Potential expanded clinical applications include **chest X-rays**, **retinal scans**, or **thoracic CT**, with **minimal adaptation**.
 
@@ -30,24 +30,24 @@ This prototype reflects the capabilities achievable through independent developm
 
 ## System Overview
 
-- **High Performance Benchmarks:** Dice: O.875, IoU 0.8. These metrics reflect how closely the model's segmentation boundaries align with the expert ground truth segmentation boundaries. All three models are 100% accurate at detecting every lesion in the test set of 1000 images. 
-- **Custom architecture:** U-Net with attention bottleneck
+- **High Performance Benchmarks:** Dice: O.875, IoU 0.8. These metrics reflect how closely the models' segmentation boundaries align with the expert ground truth segmentation boundaries. All three models are 100% accurate at detecting every lesion in the test set of 1000 images. 
+- **Custom architecture:** U-Net with attention bottleneck.
 - **Model Variants** include precision-optimized (reduced false positives), recall-optimized (reduced false negatives), and balanced.
-- **Dataset**: ISIC 2018 – Task 1: Binary Segmentation, with established training, validation, and test partitions preserved for precise benchmarks  
-- **Custom Loss functions**: Dice, Tversky, Hybrid
-- **Training Pipeline** includes robust augmentation, fine tuning, and callbacks for early stopping, iterative checkpoints, and LR scheduling 
-- **Model-agnostic** utilities for evaluation, batch metrics, confusion matrices, comparison, and explainability
-- **Fully modular** XAI + evaluation pipeline supports any model, batch, or layer combination
-- **Plug-and-play** functions for metric reporting, model variant comparison, and visual overlays
-- **Modular** image processing stack supports image/mask alignment, augmentation, and pre-inference transformations
+- **Dataset**: ISIC 2018 – Task 1: Binary Segmentation, with established training, validation, and test partitions preserved for precise benchmarks.  
+- **Custom Loss functions**: Dice, Tversky, Hybrid.
+- **Training Pipeline** includes robust augmentation, fine tuning, and callbacks for early stopping, iterative checkpoints, and LR scheduling. 
+- **Model-agnostic** utilities for evaluation, batch metrics, confusion matrices, comparison, and explainability.
+- **Fully modular** XAI + evaluation pipeline supports any model, batch, or layer combination.
+- **Plug-and-play** functions for metric reporting, model variant comparison, and visual overlays.
+- **Modular** image processing stack supports image/mask alignment, augmentation, and pre-inference transformations.
 - **LLM Integration** for accurate and efficient batch metric retrieval using lightweight tinyllama 1.1B.
 
-- **Additional Constraints Imposed:** Developed for contained hardware, low-infrastructure (rural areas) deployment.
+- **Additional Constraints Imposed:** Developed for low-infrastructure (rural) deployment. Full training, augmentation, evaluation, segmentation, XAI techniques, and LLM integration run on **modest hardware**.
 - No data outside of ISIC 2018.
 - No pretrained models.
 - No compute-heavy ViTs or ensembles.
 - No cloud dependency.
-- No GPU required. CPU-optimized. Full training, segmentation, XAI pipeline, and LLM integration runs on **modest hardware**  
+- No GPU required. CPU-optimized. 
 
 ---
 
@@ -73,7 +73,6 @@ This project does not address diagnosis. Its focus is bridging the gap between h
 System structure, transparency methods, and audit frameworks generalize to:
 
 - Additional Medical Imaging Tasks
-- Healthcare Diagnostics  
 - Agriculture Automation 
 - Quality Control Processes
 - Satellite Imagery Segmentation
@@ -82,7 +81,7 @@ System structure, transparency methods, and audit frameworks generalize to:
 
 ## Metrics 
 
-Previously, F1 Score and Dice diverged due to calculating global pixel averages vs. global image batch averages. The calculation formulas were later unified. Both have been kept for completeness.
+Previously, F1 Score and Dice diverged due to calculating global pixel averages vs. global image batch averages. The calculation formulas were later unified. Both Dice and F1 have been kept for completeness.
 
 | Model              | Dice     | IoU      | Precision | Recall   | F1 Score | Pixel Accuracy |
 |-------------------|----------|----------|-----------|----------|----------------|----------|
@@ -126,11 +125,11 @@ Previously, F1 Score and Dice diverged due to calculating global pixel averages 
 
 ---
 
-## Basic Mask Output vs Ground Truth Mask
+## Model Mask Output vs. Ground Truth Mask
 
-**A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set.** 
+**A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set (Dice 0.875, IoU 0.8).** 
 
-**However, all functions are fully modular and can be passed any model, batch, layer, or XAI technique.** 
+**All functions are fully modular and can be passed any model, batch, or layer.** 
 
 **All outputs generated and recorded at time of inference.**
 
@@ -149,7 +148,7 @@ Basic mask output for batch 78 using Model 1 (Precision-Optimized) to illustrate
 
 ## Segmentation Overlay vs Ground Truth Overlay
 
-Segmentation Overlay for Model 1 (Precision-Optimized). The model output has been dimmed and laid over the original image.
+Segmentation Overlay for Model 1 (Precision-Optimized). The model's mask output has been dimmed and laid over the original image.
 
 *Side-by-side comparison of model-produced segmentation overlay vs. ground truth overlay.*
 
@@ -164,7 +163,7 @@ Segmentation Overlay for Model 1 (Precision-Optimized). The model output has bee
 
 ## Segmentation Overlay Comparison of Variant Models vs Ground Truth Overlay with Batch Metrics
 
-Three model variants with same architecture but different loss functions for specialized error profiles, for comparison. 
+Three model variants trained via different loss functions for specialized error profiles, compared. 
 
 *Side-by-side comparison of segmentation output vs. ground truth across three model variants.*
 
@@ -198,7 +197,7 @@ Accurate and efficient batch metric retrieval using JSON structured data and Tin
 
 ## Superpixel Confidence Mapping for XAI
 
-Pixel-level confidence for model's segmentation decisions. Superpixels are formed by averaging like pixels via SLIC algorithm. 200 superpixel segments (alterable parameter) applied for visualization.
+Pixel-level confidence for model's segmentation decisions. Superpixels are formed by averaging like pixels via SLIC algorithm. 200 superpixel segments (configurable parameter) applied for visualization.
 
 *Heatmap displaying class confidence for each pixel, grouped by like pixels, for transparency.*
 
@@ -213,7 +212,7 @@ Pixel-level confidence for model's segmentation decisions. Superpixels are forme
 
 ## Layer-wise Grad-CAM for Decoder Layers for XAI
 
-Visualization of decoder layers only. Any layer or layer grouping can be visualized with this technique (configurable parameter), but encoder, bottleneck, and output layer not shown here. Optional smoothing (configurable parameter) applied for visualization.
+Visualization of decoder layers only. Any layer or layer grouping can be visualized with this technique (configurable parameter), but encoder, bottleneck, and output layer not shown here. Smoothing (configurable parameter) applied for visualization.
 
 *Heatmap of contribution to output across layers for transparency.*
 
