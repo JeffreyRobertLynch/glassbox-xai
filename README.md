@@ -1,6 +1,6 @@
 # GlassBox XAI: Attention U-Net for Medical Image Segmentation with Explainability
 
-**GlassBox** is a deep learning computer vision system designed to support medical professionals by providing automated medical image segmentation. It achieves high performance (Dice: O.875, IoU 0.8) on the **ISIC 2018 - Task 1: Binary Segmentation** skin lesion dataset.
+**GlassBox** is a deep learning computer vision system designed to support medical professionals by providing automated medical image segmentation. It achieves high performance (Dice: O.875, IoU: 0.8) on the **ISIC 2018 - Task 1: Binary Segmentation** skin lesion dataset.
 
 Beyond performance, **explainable AI (XAI)** techniques reveal model reasoning for enhanced **transparency**, **reliability**, and **auditability**. XAI techniques featured include **saliency heatmap overlays**, **pixel confidence overlays**, **integrated gradient overlays**, and **end-to-end layer-wise Grad-CAM**. Inference is constructed with **transparency**, enabling effective **human-in-the-loop (HITL)** workflows and supporting **clinical review**.
 
@@ -30,7 +30,7 @@ This prototype reflects the capabilities achievable through independent developm
 
 ## System Overview
 
-- **High Performance Benchmarks:** Dice: O.875, IoU 0.8. These metrics reflect how closely the models' segmentation boundaries align with the expert ground truth segmentation boundaries. All three models are 100% accurate at detecting every lesion in the test set of 1000 images. 
+- **High Performance Benchmarks:** Dice: O.875, IoU: 0.8. These metrics reflect how closely the models' segmentation boundaries align with the expert ground truth segmentation boundaries. All three models are 100% accurate at detecting every lesion in the test set of 1000 images. 
 - **Custom architecture:** U-Net with attention bottleneck.
 - **Model Variants** include precision-optimized (reduced false positives), recall-optimized (reduced false negatives), and balanced.
 - **Dataset**: ISIC 2018 – Task 1: Binary Segmentation, with established training, validation, and test partitions preserved for precise benchmarks.  
