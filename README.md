@@ -1,4 +1,4 @@
-# GlassBox XAI – Lightweight Medical Imaging Prototype
+# GlassBox XAI: Attention U-Net for Medical Image Segmentation with Explainability
 
 **GlassBox** is a deep learning computer vision system designed to support medical professionals by providing automated medical image segmentation. It achieves high performance (Dice: O.875, IoU 0.8) on the **ISIC 2018 - Task 1: Binary Segmentation** skin lesion dataset.
 
