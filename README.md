@@ -128,7 +128,11 @@ Previously, F1 Score and Dice diverged due to calculating global pixel averages 
 
 ## Basic Mask Output vs Ground Truth Mask
 
-**Note**: A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set. **All functions are fully modular and can be passed any model, batch, layer, or XAI technique.** All outputs generated and recorded at time of inference.
+**A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set.** 
+
+**However, all functions are fully modular and can be passed any model, batch, layer, or XAI technique.** 
+
+**All outputs generated and recorded at time of inference.**
 
 Basic mask output for batch 78 using Model 1 (Precision-Optimized) to illustrate how overlays are constructed, step by step, from model output.
 
