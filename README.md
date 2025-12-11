@@ -285,7 +285,137 @@ Integrated gradient mapping for attribution. Parameters applied for visualizatio
 
 ---
 
-### Connect & Contact
+## Key Development Milestones
+
+These milestones reflect not only technical development but iterative experimentation, systematic validation, and a focus on real-world explainability.
+
+---
+
+### Problem Scoping & Constraints
+- Defined potential clinical context, performance requirements, and XAI capabilities.
+- Chose to exclude pretrained models and external datasets to enforce full transparency and auditability.
+- Prioritized Dice as the most clinically relevant metric.
+
+---
+
+### Data Review & Integrity
+- Selected ISIC 2018 Challenge: Task 1 dataset for its clinical relevance and benchmark status.
+- Maintained original training, validation, and test splits for reproducibility and fair comparison.
+
+---
+
+### Model Architecture Design
+- Designed and initialized a custom U-Net model with attention mechanisms.
+- Incorporated layer normalization, dropout, and other regularization strategies to reduce overfitting.
+
+---
+
+### Modular Augmentation Pipeline
+- Developed a modular image processing pipeline supporting toggled transformations.
+- Solved and validated image-mask alignment through shared random seeds and post-transform verification.
+- Experimentation with transformations.
+
+---
+
+### Custom Loss Functions
+- Implemented and compared Dice Loss, Tversky Loss, and a hybrid Dice–Tversky Loss to optimize for various clinical priorities.
+- Aligned loss strategies with model variants.
+
+---
+
+### Initial Training
+- Conducted initial training runs with aggressive logging, callbacks, and visualization.
+- Verified base model performance using validation metrics prior to variant model fine-tuning.
+
+---
+
+### Variant Fine-Tuning
+- Refined training parameters and loss functions for three model variants: Dice-Optimized, Balanced (F1), Recall-Optimized
+- Tracked validation metrics to detect overfitting and guide early stopping.
+
+---
+
+### Evaluation & Benchmarking
+- Computed all relevant performance metrics (Dice, IoU, Precision, Recall, Pixel Accuracy, F1 Score).
+- Compared results across all three model variants.
+- Used unaltered test set, no image preprocessing, for final benchmark reporting.
+
+---
+
+### Visualization & Verification
+- Overlaid predicted segmentation masks on source images for visual inspection.
+- Used this to detect potential post-processing errors.
+
+---
+
+### Preprocessing Experimentation
+- Tested multiple preprocessing configurations and evaluated their impact on final test performance.
+- Chose to report metrics without preprocessing to preserve direct comparability with other ISIC benchmark solutions.
+
+---
+
+### Explainability (XAI) Tools
+- Solved the issue of model cloning and output layer adjustment for pre-sigmoid raw logit access.
+- Added overlays and side-by-side views to improve interpretability.
+- Tuned XAI tools to operate on either tensor or NumPy representations depending on compatibility.
+- Implemented Grad-CAM, superpixel confidence mapping, saliency mapping, integrated gradients, and Grad-CAM layer visualizations.
+
+---
+
+### End to End Layer Visualization
+- Created a function to visualize any layer, or combination of layers, using Grad-CAM.
+- Enabled full layer-level inspection to observe architecture and confirm attention application.
+
+### LLM Integration
+- Integrated Tinyllama 1.1B, an efficient LLM, for querying and retrieving recorded batch metrics.
+- Tested functionality and iterated on scaffolding, parsing, prompt engineering, and LLM configuration until 100% test accuracy achieved.
+
+
+---
+
+## Future Work
+
+GlassBox has several avenues for improving model performance with tradeoffs in interpretability, development time, on-device feasibility, and computational cost. 
+
+---
+
+### Subject Matter Expert Collaboration
+For GlassBox to transition from proof-of-concept to clinical utility, collaboration with dermatology experts is essential.
+
+- **Clinical Workflow Integration**
+Partnering with dermatologists and clinical advisors can help validate the utility of XAI techniques in clinical settings, identify opportunities for workflow integration, and prioritize additional techniques for decision support.
+
+- **UI/UX Development**
+Building user interfaces tailored to clinical or educational use could improve usability for XAI visualizations. Integrating GlassBox with clinical tools and EHR systems could further enhance its utility in real-world workflows.
+
+- **Expanded XAI & Human-in-the-Loop (HITL) Tools**
+Designing additional tools that allow experts to explore model reasoning, suggest corrections, and highlight edge cases could improve trust, enable targeted retraining, and accelerate model refinement through human-in-the-loop feedback.
+
+---
+
+### Performance Improvement
+Improving Dice performance from 0.875 to 0.9 is feasible if we expand training data beyond the relatively small ISIC 2018 set and optimize data augmentation during training. 
+
+Improvement beyond this is achievable as well, but would require more time and computational complexity. For example, an ensemble combining a high-performing Attention U-Net with architecturally diverse models could match the performance of 2025 state-of-the-art solutions.
+
+- **Optimize Data Augmentation**
+More advanced or domain-specific augmentation strategies could improve generalization. This would require more experimentation and domain expert collaboration.
+
+- **Expand Training Data**
+Incorporating more expert-annotated images from trusted sources (e.g., HAM10000) could improve model performance and reduce bias. This would be the most efficient way to improve metrics, and would have been prioritized in this iteration, but we constrained ourselves to using only the unaltered ISIC 2018 dataset for training.
+
+- **Ensemble Models**
+Combining the strengths of multiple models via ensembling or model averaging could improve overall performance, but increases inference time and complexity. While ensembling the three variant models in GlassBox is technically possible, their shared architecture limits the diversity of learned representations, likely resulting in minimal gains. Greater benefits would be expected from ensembling architecturally diverse models.
+
+- **Vision Transformers**
+Transformer-based architectures have shown state-of-the-art performance in medical imaging tasks. Exploring these could improve segmentation performance. However, they generally require large-scale training data and increased computational complexity.
+
+- **Pre-Trained Models**
+Using pretrained encoders or models may accelerate convergence and improve performance, though it may reduce transparency and regulatory compliance if training data is not fully auditable. Additionally, most pretrained models require licensing agreements for full production deployment.
+
+---
+
+## Connect & Contact
 
 Available for live walkthroughs, Q&A, and technical deep dives on this project.
 
@@ -293,11 +423,7 @@ Available for live walkthroughs, Q&A, and technical deep dives on this project.
 
 (Demo access, source code discussions, and use-case exploration available upon request.)
 
----
-
-## Disclaimer
-
-This project is a research-oriented prototype for educational and exploratory purposes only. It is **not a certified medical device**, and I am **not a licensed medical professional**. No part of this work should be used for clinical decision-making without expert validation and regulatory approval.
+> This project is a research-oriented prototype for educational and exploratory purposes only. It is **not a certified medical device**, and I am **not a licensed medical professional**. No part of this work should be used for clinical decision-making without expert validation and regulatory approval.
 
 ## Citations
 
