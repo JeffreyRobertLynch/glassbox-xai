@@ -12,7 +12,31 @@ This prototype reflects the capabilities achievable through independent developm
 
 ---
 
-## Data Ethics & Full Disclaimer
+## Table of Contents
+1. [Data Ethics & Full Disclaimer](#1-data-ethics-full-disclaimer)  
+2. [System Overview](#2-system-overview)    
+3. [Transparency, Auditability & HITL Design](#3-transparency-auditability-HITL-design)  
+4. [Generalizability](#4-generalizability)  
+5. [Metrics](#5-metrics)  
+6. [Pixel-Level Error](#6-pixel-level-error)  
+7. [Model Mask Output vs. Ground Truth Mask](#7-Model-Mask-Output-vs-Ground-Truth-Mask)  
+8. [Segmentation Overlay vs Ground Truth Overlay](#8-Segmentation-Overlay-vs-Ground-Truth-Overlay)
+9. [Variant Model Comparison with Batch Metrics](#9-Variant-Model-Comparison-with-Batch-Metrics)  
+10. [LLM Integration for Batch Metric Retrieval](#10-LLM-Integration-for-Batch-Metric-Retrieval)
+11. [Superpixel Confidence Mapping for XAI](#11-Superpixel-Confidence-Mapping-for-XAI)
+12. [Layer-wise Grad-CAM for Decoder Layers for XAI](#12-Layer--wise-Grad--CAM-for-Decoder-Layers-for-XAI)
+13. [Saliency Mapping for XAI](#13-Saliency-Mapping-for-XAI)
+14. [Saliency Mapping with Smooth Grad for XAI](#14-Saliency-Mapping-with-Smooth-Grad-for-XAI)
+15. [Saliency Mapping with Guided Backpropagation for XAI](#15-Saliency-Mapping-with-Guided-Backpropagation-for-XAI)
+16. [Integrated Gradient Mapping for XAI](#16-Integrated-Gradient-Mapping-for-XAI)
+17. [Key Development Milestones](#17-key-development-milestones)     
+18. [Future Work](#18-future-work)
+19. [Author](#19-author) 
+20. [References & Citations](#20-references-citations)  
+
+---
+
+## 1. Data Ethics & Full Disclaimer
 
 **This project is for research and demonstration purposes only. It is not a medical device and is not intended for clinical use, diagnosis, or treatment.**
 
@@ -28,7 +52,7 @@ This prototype reflects the capabilities achievable through independent developm
 
 ---
 
-## System Overview
+## 2. System Overview
 
 - **High Performance Benchmarks:** Dice: O.875, IoU: 0.8. These metrics reflect how closely the models' segmentation boundaries align with the expert ground truth segmentation boundaries. All three models are 100% accurate at detecting every lesion in the test set of 1000 images. 
 - **Custom architecture:** U-Net with attention bottleneck.
@@ -51,7 +75,7 @@ This prototype reflects the capabilities achievable through independent developm
 
 ---
 
-## Transparency, Auditability & HITL Design
+## 3. Transparency, Auditability & HITL Design
 
 GlassBox addresses the challenge of **interpretable segmentation** in high-stakes domains using skin lesion analysis as a case study. Accurate **binary segmentation** is a foundational task in medical image analysis.
 
@@ -68,7 +92,7 @@ This project does not address diagnosis. Its focus is bridging the gap between h
 
 ---
 
-## Generalizability
+## 4. Generalizability
 
 System structure, transparency methods, and audit frameworks generalize to:
 
@@ -79,7 +103,7 @@ System structure, transparency methods, and audit frameworks generalize to:
 
 ---
 
-## Metrics 
+## 5. Metrics 
 
 Previously, F1 Score and Dice diverged due to calculating global pixel averages vs. global image batch averages. The calculation formulas were later unified. Both Dice and F1 have been kept for completeness.
 
@@ -102,7 +126,7 @@ Previously, F1 Score and Dice diverged due to calculating global pixel averages 
 
 ---
 
-## Pixel-Level Error
+## 6. Pixel-Level Error
 
 **False positive (FP) and false negative (FN) rates are derived from confusion matrices and represent the percentage of total test set pixels. These values align with reported pixel accuracy.**
 
@@ -125,7 +149,7 @@ Previously, F1 Score and Dice diverged due to calculating global pixel averages 
 
 ---
 
-## Model Mask Output vs. Ground Truth Mask
+## 7. Model Mask Output vs. Ground Truth Mask
 
 **A single batch featuring mean performance, batch 78, is displayed across all visuals for transparency. This batch's performance metrics closely match Model 1's performance on the full 1000 image test set (Dice 0.875, IoU 0.8).** 
 
@@ -146,7 +170,7 @@ Basic mask output for batch 78 using Model 1 (Precision-Optimized) to illustrate
 
 ---
 
-## Segmentation Overlay vs Ground Truth Overlay
+## 8. Segmentation Overlay vs Ground Truth Overlay
 
 Segmentation Overlay for Model 1 (Precision-Optimized). The model's mask output has been dimmed and laid over the original image.
 
@@ -161,7 +185,7 @@ Segmentation Overlay for Model 1 (Precision-Optimized). The model's mask output 
 
 ---
 
-## Segmentation Overlay Comparison of Variant Models vs Ground Truth Overlay with Batch Metrics
+## 9. Variant Model Comparison with Batch Metrics
 
 Three model variants trained via different loss functions for specialized error profiles, compared. 
 
@@ -178,7 +202,7 @@ Three model variants trained via different loss functions for specialized error 
 
 ---
 
-## LLM Integration for Batch Metric Retrieval
+## 10. LLM Integration for Batch Metric Retrieval
 
 Accurate and efficient batch metric retrieval using JSON structured data and Tinyllama 1.1B. Retrieved metrics match calculated and saved metrics for each batch.
 
@@ -195,7 +219,7 @@ Accurate and efficient batch metric retrieval using JSON structured data and Tin
 
 ---
 
-## Superpixel Confidence Mapping for XAI
+## 11. Superpixel Confidence Mapping for XAI
 
 Pixel-level confidence for model's segmentation decisions. Superpixels are formed by averaging like pixels via SLIC algorithm. 200 superpixel segments (configurable parameter) applied for visualization.
 
@@ -210,7 +234,7 @@ Pixel-level confidence for model's segmentation decisions. Superpixels are forme
 
 ---
 
-## Layer-wise Grad-CAM for Decoder Layers for XAI
+## 12. Layer-wise Grad-CAM for Decoder Layers for XAI
 
 Visualization of decoder layers only. Any layer or layer grouping can be visualized with this technique (configurable parameter), but encoder, bottleneck, and output layer not shown here. Smoothing (configurable parameter) applied for visualization.
 
@@ -225,7 +249,7 @@ Visualization of decoder layers only. Any layer or layer grouping can be visuali
 
 ---
 
-## Saliency Mapping for XAI
+## 13. Saliency Mapping for XAI
 
 Basic saliency mapping shows model sensitivity without regard to attribution. Scaling factor (configurable parameter) of 10 applied for visualization.
 
@@ -240,7 +264,7 @@ Basic saliency mapping shows model sensitivity without regard to attribution. Sc
 
 ---
 
-## Saliency Mapping with Smooth Grad for XAI
+## 14. Saliency Mapping with Smooth Grad for XAI
 
 Saliency mapping averaging 50 samples (configurable parameter) for more robust visualization. Scaling factor of 10 applied for visualization. 
 
@@ -255,7 +279,7 @@ Saliency mapping averaging 50 samples (configurable parameter) for more robust v
 
 ---
 
-## Saliency Mapping with Guided Backpropagation for XAI
+## 15. Saliency Mapping with Guided Backpropagation for XAI
 
 Saliency mapping with guided backpropagation. Scaling factor of 10 applied for visualization. 
 
@@ -270,7 +294,7 @@ Saliency mapping with guided backpropagation. Scaling factor of 10 applied for v
 
 ---
 
-## Integrated Gradient Mapping for XAI
+## 16. Integrated Gradient Mapping for XAI
 
 Integrated gradient mapping for attribution. Parameters applied for visualization: scaling factor of 1, 50 steps, tf.zeros_like baseline. All parameters are configurable.
 
@@ -285,7 +309,7 @@ Integrated gradient mapping for attribution. Parameters applied for visualizatio
 
 ---
 
-## Key Development Milestones
+## 17. Key Development Milestones
 
 These milestones reflect not only technical development but iterative experimentation, systematic validation, and a focus on real-world explainability.
 
@@ -373,7 +397,7 @@ These milestones reflect not only technical development but iterative experiment
 
 ---
 
-## Future Work
+## 18. Future Work
 
 GlassBox has several avenues for improving model performance with tradeoffs in interpretability, development time, on-device feasibility, and computational cost. 
 
@@ -415,7 +439,7 @@ Using pretrained encoders or models may accelerate convergence and improve perfo
 
 ---
 
-## Connect & Contact
+## 19. Author
 
 Available for live walkthroughs, Q&A, and technical deep dives on this project.
 
@@ -425,7 +449,7 @@ Available for live walkthroughs, Q&A, and technical deep dives on this project.
 
 > This project is a research-oriented prototype for educational and exploratory purposes only. It is **not a certified medical device**, and I am **not a licensed medical professional**. No part of this work should be used for clinical decision-making without expert validation and regulatory approval.
 
-## Citations
+## 20. References & Citations
 
 This project uses data from the ISIC 2018: Task 1 – Lesion Segmentation challenge. All images and masks are publicly available, de-identified, and used here under the ISIC data use policy for research and educational purposes.
 
