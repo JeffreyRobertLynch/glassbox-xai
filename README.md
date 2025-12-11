@@ -13,9 +13,9 @@ This prototype reflects the capabilities achievable through independent developm
 ---
 
 ## Table of Contents
-1. [Data Ethics & Full Disclaimer](#1-data-ethics-full-disclaimer)  
+1. [Data Ethics & Disclaimer](#1-data-ethics--disclaimer)  
 2. [System Overview](#2-system-overview)    
-3. [Transparency, Auditability & HITL Design](#3-transparency-auditability-HITL-design)  
+3. [XAI & HITL Design](#3-XAI--HITL-design)  
 4. [Generalizability](#4-generalizability)  
 5. [Metrics](#5-metrics)  
 6. [Pixel-Level Error](#6-pixel-level-error)  
@@ -36,7 +36,7 @@ This prototype reflects the capabilities achievable through independent developm
 
 ---
 
-## 1. Data Ethics & Full Disclaimer
+## 1. Data Ethics & Disclaimer
 
 **This project is for research and demonstration purposes only. It is not a medical device and is not intended for clinical use, diagnosis, or treatment.**
 
@@ -75,7 +75,7 @@ This prototype reflects the capabilities achievable through independent developm
 
 ---
 
-## 3. Transparency, Auditability & HITL Design
+## 3. XAI & HITL Design
 
 GlassBox addresses the challenge of **interpretable segmentation** in high-stakes domains using skin lesion analysis as a case study. Accurate **binary segmentation** is a foundational task in medical image analysis.
 
