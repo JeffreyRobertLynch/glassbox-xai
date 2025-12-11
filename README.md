@@ -24,7 +24,7 @@ This prototype reflects the capabilities achievable through independent developm
 9. [Variant Model Comparison with Batch Metrics](#9-Variant-Model-Comparison-with-Batch-Metrics)  
 10. [LLM Integration for Batch Metric Retrieval](#10-LLM-Integration-for-Batch-Metric-Retrieval)
 11. [Superpixel Confidence Mapping for XAI](#11-Superpixel-Confidence-Mapping-for-XAI)
-12. [Layer-wise Grad-CAM for Decoder Layers for XAI](#12-Layer--wise-Grad--CAM-for-Decoder-Layers-for-XAI)
+12. [Layer-wise Grad-CAM for Decoder Layers for XAI](#12-Layer-wise-Grad-CAM-for-Decoder-Layers-for-XAI)
 13. [Saliency Mapping for XAI](#13-Saliency-Mapping-for-XAI)
 14. [Saliency Mapping with Smooth Grad for XAI](#14-Saliency-Mapping-with-Smooth-Grad-for-XAI)
 15. [Saliency Mapping with Guided Backpropagation for XAI](#15-Saliency-Mapping-with-Guided-Backpropagation-for-XAI)
@@ -32,7 +32,7 @@ This prototype reflects the capabilities achievable through independent developm
 17. [Key Development Milestones](#17-key-development-milestones)     
 18. [Future Work](#18-future-work)
 19. [Author](#19-author) 
-20. [References & Citations](#20-references-citations)  
+20. [References & Citations](#20-references--citations)  
 
 ---
 
