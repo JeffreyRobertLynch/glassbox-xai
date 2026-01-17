@@ -4,8 +4,6 @@
 
 Beyond performance, **explainable AI (XAI)** techniques reveal model reasoning for enhanced **transparency**, **reliability**, and **auditability**. XAI techniques featured include **saliency heatmap overlays**, **pixel confidence overlays**, **integrated gradient overlays**, and **end-to-end layer-wise Grad-CAM**. Inference is constructed with **transparency**, enabling effective **human-in-the-loop (HITL)** workflows and supporting **clinical review**.
 
-Model-agnostic pipelines are structured for **model retraining** and **CI/CD**, with all functionality **fully interoperable** across all model variants. GlassBox is a **scalable foundation for responsible AI deployment** in regulated, high-stakes environments. **Model architecture**, **pipelines** (preprocessing, augmentation, training, evaluation), and **explainability** are designed for reusability across diverse segmentation tasks. Potential expanded clinical applications include **chest X-rays**, **retinal scans**, or **thoracic CT**, with **minimal adaptation**.
-
 This prototype reflects the capabilities achievable through independent development; **real-world deployment would require collaboration with clinical and regulatory experts**.
 
 > Author’s note: The following work reflects independent development by an AI engineer trained in healthcare AI. This project is a research prototype, not a medical device. All reported metrics relate to performance on the provided test set, not clinical applications.
